@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.recommender import recommend_movies, recommend_similar_movies
-
+from app.pinecone_search import search_similar_movies_pinecone
 app = FastAPI(title="Real-Time Movie Recommendation System")
 
 
@@ -19,3 +19,7 @@ def get_user_recommendations(user_id: int):
 def get_movie_recommendations(movie_id: int):
     results = recommend_similar_movies(movie_id)
     return results.to_dict(orient="records")
+
+@app.get("/recommend/pinecone")
+def get_pinecone_recommendations(movie_title: str):
+    return search_similar_movies_pinecone(movie_title)
