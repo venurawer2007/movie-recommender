@@ -91,12 +91,9 @@ sys.path.append(
     )
 )
 
-from app.pinecone_search import search_similar_movies_pinecone
+from app.recommender import recommend_movies, recommend_similar_movies
 from app.pinecone_search import search_similar_movies_pinecone
 movies_df = pd.read_csv("data/movies.csv")
-
-
-
 st.write("Choose recommendation type:")
 
 # Dropdown
